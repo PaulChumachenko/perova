@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+<name>Tweak for OpenCart 2x Russkaya sborka</name>
+<code>Tweak for OpenCart 2x Russkaya sborka</code>
+<version>2.0.3.1</version>
+<author>Romans</author>
+<link>http://opencart-russia.ru</link>
+
+
+<file path="admin/view/template/common/header.tpl">
+<!-- Расширяем колонку меню для русских слов и подключаем translit.js-->
+	<operation>
+		<search><![CDATA[
+		<?php foreach ($links as $link) { ?>
+		]]></search>
+		<add position="before"><![CDATA[
+<script type="text/javascript" src="view/javascript/jquery/translit.js"></script>
+
+<style>
+#column-left.active {width: 250px !important;}
+#column-left.active + #content {margin-left: 250px !important;}
+#menu > li > ul {width: 235px !important;}
+</style>
+		]]></add>
+	</operation>
+	
+<!-- Добавляем ссылки на сайт, документацию, форум -->	
+	<operation>
+		<search><![CDATA[
+		<li><a href="http://www.opencart.com" target="_blank"><?php echo $text_homepage; ?></a></li>
+		]]></search>
+		<add position="replace"><![CDATA[
+		<li><a href="http://opencart-russia.ru/" target="_blank"><?php echo $text_homepage; ?></a></li>
+		]]></add>
+	</operation>
+	
+	<operation>
+		<search><![CDATA[
+		<li><a href="http://docs.opencart.com" target="_blank"><?php echo $text_documentation; ?></a></li>
+		]]></search>
+		<add position="replace"><![CDATA[
+		<li><a href="http://forum.opencart-russia.ru/threads/soderzhanie.5/" target="_blank"><?php echo $text_documentation; ?></a></li>
+		]]></add>
+	</operation>
+	
+	<operation>
+		<search><![CDATA[
+		<li><a href="http://forum.opencart.com" target="_blank"><?php echo $text_support; ?></a></li>
+		]]></search>
+		<add position="replace"><![CDATA[
+		<li><a href="http://forum.opencart-russia.ru" target="_blank"><?php echo $text_support; ?></a></li>
+		]]></add>
+	</operation>
+	
+</file>
+
+<!-- Удаляем пункт меню Fraud-->
+<file path="admin/view/template/common/menu.tpl">
+	<operation>
+		<search><![CDATA[
+		<li><a href="<?php echo $fraud; ?>"><?php echo $text_fraud; ?></a></li>
+		]]></search>
+		<add position="replace"><![CDATA[
+		]]></add>
+	</operation>
+</file>
+
+<!-- Скрываем поля в форме товара -->
+<file path="admin/view/template/catalog/product_form.tpl">
+	<operation>
+		<search><![CDATA[
+			<label class="col-sm-2 control-label" for="input-sku"><span data-toggle="tooltip" title="<?php echo $help_sku; ?>"><?php echo $entry_sku; ?></span></label>
+		]]></search>
+		<add position="replace" offset="-2"><![CDATA[
+               <label class="col-sm-2 control-label" for="input-sku"><span data-toggle="tooltip" title="<?php echo $help_sku; ?>"><?php echo $entry_sku; ?></span></label>
+		]]></add>
+	</operation>
+	
+	<operation>
+		<search><![CDATA[
+        <label class="col-sm-2 control-label" for="input-sku">
+		]]></search>
+		<add position="before"><![CDATA[
+ 				<div class="col-sm-1 text-right">
+					<a type="button"  title="Показать/Скрыть - Дополнительные поля " class="btn btn-info " data-toggle="collapse" data-parent="#accordion" href="#pcollapse"><i class="fa fa-arrows-v"></i></a>
+				</div>
+			 </div>
+			  
+              <div class="collapse" id="pcollapse">
+			  <div class="form-group">
+		]]></add>
+	</operation>
+	
+	<operation>
+		<search><![CDATA[
+		<label class="col-sm-2 control-label" for="input-location"><?php echo $entry_location; ?></label>
+		]]></search>
+		<add position="before" offset="1"><![CDATA[
+			  </div>
+		]]></add>
+	</operation>
+	
+	<operation>
+		<search><![CDATA[
+		<input type="text" name="model" value="<?php echo $model; ?>" placeholder="<?php echo $entry_model; ?>" id="input-model" class="form-control" />
+		]]></search>
+		<add position="replace" offset="-1"><![CDATA[
+                <div class="col-sm-9">
+                  <input type="text" name="model" value="<?php echo $model; ?>" placeholder="<?php echo $entry_model; ?>" id="input-model" class="form-control" />
+		]]></add>
+	</operation>
+</file>
+
+<!-- Исправляем ошибку сохранения пустого значения -->
+<file path="admin/model/catalog/category.php">
+	<operation>
+		<search><![CDATA[
+		if (isset($data['keyword'])) {
+		]]></search>
+		<add position="replace"><![CDATA[
+		if ($data['keyword']) {
+		]]></add>
+	</operation>
+</file>
+
+<!-- Добавляем валюту рубль в модуль -->
+<file path="catalog/model/payment/pp_standard.php">
+	<operation>
+		<search><![CDATA[
+			'AUD',
+		]]></search>
+		<add position="before"><![CDATA[
+			'RUB',
+		]]></add>
+	</operation>
+</file>
+
+</modification>

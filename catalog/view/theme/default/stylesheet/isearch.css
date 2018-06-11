@@ -1,0 +1,151 @@
+.iSearchBox {
+	padding: 10px;
+	background: white;
+	display:none;
+	-moz-box-shadow: 0 1px 2px #ccc;
+	-webkit-box-shadow: 0 1px 2px #CCC;
+	box-shadow: 0 1px 2px #CCC;
+	z-index:10003;
+	position:absolute;
+	margin-top:1px;
+	overflow: inherit !important;
+}
+
+.iSearchBox  li, .iSearchBox ul {
+	list-style:none;
+	padding:0;
+	margin:0;	
+}
+
+.iSearchBox ul {
+    margin-bottom: 10px;
+}
+
+.iSearchBox  li {
+	margin-bottom: 10px;
+	cursor:pointer;
+	padding: 0 10px;
+	border-top:1px solid #fff;
+}
+
+.iSearchBox  li:last-child {
+	margin-bottom: 0;
+	font-size: 13px;	
+}
+
+.iSearchBox  li:hover h3, .iSearchBox  li:hover .iSearchModel, .iSearchBox  li:hover .iSearchPrice {
+	color:#003264;
+}
+
+.iSearchBox li:hover,
+.iSearchBox li.activekey {
+	-moz-box-shadow: 0 1px 1px #888;
+	-webkit-box-shadow: 0 1px 1px #888;
+	box-shadow: 0 1px 1px #888;
+	border-top:1px solid #eee;
+}
+
+.iSearchBox li.iSearchNoResults, .iSearchBox li.iSearchNoResults:hover {
+	-moz-box-shadow: 0 1px 1px #fff;
+	-webkit-box-shadow: 0 1px 1px #fff;
+	box-shadow: 0 1px 1px #fff;
+	border-top:1px solid #fff;
+	cursor: default;
+	text-align: center;
+}
+
+.iSearchBox li img {
+	float: left;
+	padding: 10px 10px 10px 0;
+}
+
+.iSearchBox li .iSearchItem {
+	min-height: 50px;
+}
+
+.iSearchBox li h3 {
+	padding: 0;
+	margin: 0;
+	padding-top: 10px;
+	/*padding-bottom: 10px;*/
+	width:42%;
+	float:left;
+	overflow: hidden;
+	white-space:normal !important;
+	line-height: 18px;
+	font-size: 14px;
+	font-weight: normal;
+	color: #003264;
+}
+
+.iSearchBox li .iSearchPrice {
+	float: right;
+	font-weight: bold;
+	color: #333;
+	font-size: 12px;
+	display: block;
+	padding: 10px 0;
+}
+
+.iSearchBox li .iSearchPrice .specialPrice {
+	color:red;
+	text-decoration:line-through;
+}
+
+.iSearchBox li .iSearchModel {
+	color: #555;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.iSearchBox .iSearchViewAllResults {
+	height: 20px;
+	color: #333;
+	margin-bottom: 0px;
+	text-align: center;
+	line-height: 20px;	
+}
+
+.iSearchBoxWrapper {
+	position:relative;	
+}
+
+
+.iSearchBoxWrapper .clearfix:before,
+.iSearchBoxWrapper .clearfix:after {
+    content:"";
+    display:table;
+}
+.iSearchBoxWrapper .clearfix:after {
+    clear:both;
+}
+
+.iSearchBoxWrapper .clearfix {
+    zoom:1;
+}
+
+.iSearchBoxWrapper #iSearchBoxLoadingImage {
+	background-image: url(../image/isearch/loading.gif);
+	width: 16px;
+	height: 16px;
+	visibility: hidden;
+	display: none !important;
+}
+
+.iSearchBox ul li.iSearchHeading {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    padding-left: 5px;
+    position: relative;
+}
+
+.iSearchBox ul li.iSearchHeading:hover {
+    border-color: white;
+    cursor: default;
+    box-shadow: none;
+}
+
+/* Fixes the nivo slider overlap */
+.slideshow .nivo-controlNav {
+	z-index:10;	
+}

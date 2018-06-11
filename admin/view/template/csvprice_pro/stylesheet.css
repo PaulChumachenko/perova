@@ -1,0 +1,123 @@
+/* OpenCart 2.3.x */
+.csvprice_pro_container .panel-default {
+  border-top: 1px solid #e8e8e8;
+}
+.csvprice_pro_container #table-custom-fields .csvpricepro_tbody-form td {
+	padding-top: 8px;
+}
+.csvprice_pro_container #table-custom-fields > tbody + tbody {
+	border-top: 1px solid #ddd;
+}
+.csvprice_pro_container #table-custom-fields thead > tr > th {
+  border-bottom: 1px solid #ddd;
+}
+/* Gloabl */
+p.csvpricepro-main_menu {
+	margin-bottom: 3px;
+}
+.csvpricepro-main_menu a {
+	margin-bottom: 6px;
+}
+.csvpricepro_tbody-form tr,
+.csvpricepro_tbody-form tr td{
+	border: none !important;
+	background-color:transparent !important;
+}
+.csvpricepro-field_set tr:first-child td {
+  border-top: none;
+}
+.csvprice_pro_container .form-group {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 0;
+}
+.csvprice_pro_container .csvpricepro-field_set tr:last-child {
+	border-bottom: 1px solid #ddd;
+}
+.csvprice_pro_container .csvpricepro-field_set td {
+	padding: 4px;
+	margin: 0;
+}
+.csvprice_pro_container .csvpricepro-field_set label {
+  padding-top: 5px;
+  cursor: pointer;
+  /*font-size: 12px;*/
+}
+.csvprice_pro_container label {
+	font-weight: normal;
+}
+.csvpricepro_label_checkbox {
+	cursor: pointer;
+}
+.csvpricepro_label_checkbox > input {
+	margin-right: 4px;
+}
+.csvprice_pro_container .f-icon-helper {
+	cursor: pointer;
+	text-decoration: none;
+	/*border-bottom: 1px dashed rgb(221, 221, 221);*/
+}
+.csvprice_pro_container label.control-label span:after {
+  font-family: FontAwesome;
+  color: #1E91CF;
+  content: "\f059";
+  margin-left: 4px;
+}
+.f-tooltip {
+	-moz-box-shadow: 0 0 4px #ccc;
+	-webkit-box-shadow: 0 0 4px #ccc;
+	box-shadow: 0 0 4px #ccc;
+	/*background: #fcf8e3;border: 1px solid #a2a6b2;*/
+	background: #fff3cd;;
+	border: 1px solid #ffeeba;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	padding: 0;
+	display: none;
+}
+.f-tooltip p {
+	color: #000;
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+}
+.f-tooltip .close {
+	font-weight: 700;
+	font-size: 18px;
+	cursor: pointer;
+	opacity: .2;
+}
+.f-tooltip .close:before {
+	content: '\00D7';
+}
+.f-help-block {
+	max-width: 500px;
+	position: absolute;
+	z-index: 3000 !important;
+	display: none;
+}
+.f-help-block .close {
+	position: absolute;
+	right: 5px;
+	top: 1px;
+	cursor: pointer;
+	opacity: .4;
+}
+.f-help-block .c_top, .f-help-block .c_btm {
+	background-image: none;
+}
+.f-help-content {
+	min-height: 1em;
+	padding: 20px;
+}
+.f-help-content p + p {
+	padding-top: 10px;
+}
+.f-help-content p {
+	font-size: 13px;
+	color: #000;
+}
+.f-help-block .close:hover {
+	opacity: .8;
+}

@@ -1,0 +1,260 @@
+/* BACKEND STYLES */
+
+.panel {
+	text-align: left !important;
+}
+
+ul, li {
+	list-style:none;
+	padding:0;
+	margin:0;	
+}
+
+h1 .iModulesTitle {
+	color:#333;
+	font-family: Trebuchet MS;
+	font-size: 15px;
+	display: block;
+	float: left;
+}
+
+table.form td {
+	padding: 10px 0;
+	vertical-align: top;
+}
+
+.required {
+	color: red;
+}
+
+.iModuleAdminSuperMenu {
+	float: left;	
+	margin-left: 19px;
+}
+
+.iModuleAdminSuperMenu li {
+	float: left;	
+	font-size: 14px;
+	line-height:23px;
+	cursor: pointer;
+	color: #333;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight:normal;
+	padding: 0 10px;
+	padding-bottom: 6px;
+	padding-top: 6px;
+	margin-top: -7px;
+	margin-right: 5px;
+	background: #DBDBDB;
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-top-right-radius: 6px;
+	-moz-border-radius-topleft: 6px;
+	-moz-border-radius-topright: 6px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.iModuleAdminSuperMenu li.selected {
+	background:#fff;
+	font-weight:bold;
+	color:#333;
+}
+
+
+.iModuleAdminWrappers {
+	list-style:none;
+	padding:0;
+	margin:0;	
+}
+
+.iModuleAdminWrappers li {
+	list-style:none;
+	padding:0;
+	margin:0;
+	height: 100%;
+	margin-bottom: 15px;
+	padding: 10px;
+	display: none;
+}
+
+.iModuleAdminWrappers hr {
+	border: none;
+	border-bottom: 1px dashed #ccc;
+}
+
+.iModuleAdminWrappers label {
+	min-width: 200px;	
+	margin-top:5px;
+	display:block;
+	float:left;
+	padding-right: 15px;
+}
+
+.iModuleAdminWrappers .iModuleFields > span {
+	float:left !important;	
+}
+
+.iModuleAdminWrappers select, .iModuleAdminWrappers input, .iModuleAdminWrappers textarea {
+	min-width: 140px;	
+}
+
+.iModuleAdminWrappers textarea {
+	min-height:140px;	
+	min-width:400px;
+}
+
+.iModuleAdminWrappers li:first-child {
+	display:block;	
+}
+
+.iModuleWrapperTitle {
+	font-size: 16px;
+	margin-bottom: 15px;	
+}
+
+.iModuleAdminSuperWrappers .content {
+	padding: 10px;
+	margin-left: 160px;
+	min-height: 320px;
+}
+
+.iModuleAdminSuperWrappers > li {
+	display:none;	
+}
+
+.iModuleAdminSuperWrappers > li:first-child {
+	display: block;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+.iModuleAdminSuperWrappers .iModuleWrapperTitle h2 {
+	color: #000;
+	font-family: Arial, Helvetica, sans-serif;
+	border-bottom:none;
+	text-transform:none;
+	font-size: 24px;
+}
+
+.iModuleAdminSuperWrappers .iModuleWrapperTitle h3 {
+	color: #000;
+	font-family: Arial, Helvetica, sans-serif;
+	border-bottom:none;
+	text-transform:none;
+	font-size: 18px;
+}
+
+.iModuleAdminSuperWrappers .iModuleWrapperText {
+	font-size: 12px;	
+}
+
+.iModuleAdminSuperWrappers .supportUL {
+	padding-left: 20px;	
+}
+
+.iModuleAdminSuperWrappers .iModuleSupportButton {
+	background:#51AA68;
+	padding: 10px 20px;
+	color:white;
+	border: 2px solid #fff;
+	outline: 2px solid #4E9660;
+	text-decoration:none;
+	display:inline-block;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 16px;
+	
+}
+
+.iModuleAdminSuperWrappers .iModuleSupportButton:hover {
+	background:#4E9660;
+}
+
+#content .box > .heading h1 {
+	width: 700px;	
+}
+
+.iModuleContent .box .notActivatedContent {
+	padding: 10px;
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	min-height: 300px;
+	overflow: auto;	
+	text-align:center;
+	padding-top: 80px;
+}
+
+.iModuleContent .box .notActivatedContent h1 {
+	font-size:28px;
+	
+}
+
+.iModuleContent .iModuleActivateButton {
+	background:#069;
+	padding: 16px 28px;
+	color:white;
+	border: 4px solid #fff;
+	outline: 4px solid #ccc;
+	text-decoration:none;
+	display:inline-block;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 34px;
+	
+}
+
+.iModuleContent .iModuleActivateButton:hover {
+	background:#06d;
+}
+
+
+/* Custom iSearch Styles */
+/*.addWordButton, .removeWordButton {
+	background: #003A88;
+	display:inline-block;
+	padding: 5px 10px;
+	border-radius: 10px;
+	color:#fff;
+	text-decoration:none;	
+	font-size: 11px;
+}
+
+.addWordButton:visited {
+	color: white;	
+}*/
+
+.box > .content {
+	overflow:inherit;	
+}
+
+.searchInSpan {
+	display:block;	
+}
+
+.help {
+	display: block;
+	font-size: 12px;
+	color: #777777;
+	width: 300px;
+	margin-top: 5px;
+}

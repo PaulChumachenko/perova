@@ -1,0 +1,21 @@
+.iSearchBox {
+	border-color: #ccc;
+	border-width: 1px;
+	border-style: solid;
+	border-top-style: none;
+	margin-top: -15px;
+}
+
+.iSearchBox  li {
+	clear: both;
+	border-color: #fff;
+	border-width: 1px;
+	border-style: solid;
+	height: 100%;
+}
+
+.iSearchBox  li:hover {
+	border-color: #ccc;
+	border-width: 1px;
+	border-style: solid;
+}

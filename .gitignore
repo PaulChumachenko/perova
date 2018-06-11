@@ -1,0 +1,8 @@
+.idea
+tmp
+system/cache
+system/logs
+image/cache
+config.php
+admin/config.php
+autoparts/config.php
