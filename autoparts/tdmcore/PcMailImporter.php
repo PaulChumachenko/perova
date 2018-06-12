@@ -365,7 +365,7 @@ class PcMailImporter
 		if(empty($this->ignoredRows)) return false;
 		if(count($this->ignoredRows) < 2)
 
-		$headers = "From: Partix-Auto-Importer\r\n";
+		$headers = "From: Autopartix Importer\r\n";
 		$headers .= "Reply-To: support@autopartix.com\r\n";
 		$headers .= "Return-Path: support@autopartix.com\r\n";
 		$headers .= "X-Mailer: PHP5\n";
