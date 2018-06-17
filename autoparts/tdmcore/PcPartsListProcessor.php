@@ -121,6 +121,61 @@ class PcPartsListProcessor
 	}
 
 	/**
+	 * @return $this
+	 */
+	public function sortList()
+	{
+		if(empty($this->list['PARTS']) || empty($this->list['PRICES'])) return $this;
+
+		$availablePKList = [];
+		$notAvailablePKList = [];
+		foreach ($this->list['PRICES'] as $pk => $price){
+			$availablePriceList = array_column($price, 'AVAILABLE_NUM');
+			$available = $availablePriceList ? max($availablePriceList) : 0;
+			if ($available == 0) {
+				$notAvailablePKList[] = $pk;
+			} else {
+				$availablePKList[] = $pk;
+			}
+		}
+
+		$sortedAvailableList = $this->sortByPriceAsc($availablePKList);
+		$sortedNotAvailableList = $this->sortByPriceAsc($notAvailablePKList);
+		$this->list['PARTS'] = array_merge($sortedAvailableList, $sortedNotAvailableList);
+
+		return $this;
+	}
+
+	/**
+	 * @param $pkList
+	 * @return array
+	 */
+	protected function sortByPriceAsc($pkList)
+	{
+		if(empty($pkList)) return [];
+
+		$sort = [];
+		foreach ($pkList as $pk){
+			$price = $this->list['PRICES'][$pk];
+			$partCost = max(array_column($price, 'PRICE_CONVERTED'));
+			$sort[$pk] = $partCost;
+		}
+
+		asort($sort);
+
+		$sortedPartsList = [];
+		foreach (array_keys($sort) as $pk) {
+			foreach ($this->list['PARTS'] as $part) {
+				if ($part['PKEY'] != $pk) continue;
+				$sortedPartsList[] = $part;
+				break;
+			}
+		}
+
+		return $sortedPartsList;
+	}
+
+	/**
 	 * @param $part
 	 * @return string
 	 */

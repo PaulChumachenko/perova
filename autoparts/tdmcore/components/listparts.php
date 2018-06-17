@@ -442,6 +442,11 @@ if (0 < count($arPARTS_noP)) {
 		$rsImages = TDSQL::GetImagesUnion($arPAIDs);
 		TDMSetTime("GetImagesUnion(PAIDs) ## For items count - " . $arPAIDs_cnt);
 		while ($arImage = $rsImages->Fetch()) {
+
+			//PcHelper::dump("http://" . TECDOC_FILES_PREFIX . $arImage["PATH"]);
+			//PcHelper::dump($arImage);
+			//echo '<img src = "' . "http://" . TECDOC_FILES_PREFIX . $arImage["PATH"] . '"><br/>';
+
 			foreach ($arPARTS as $PKey => $arTPart) {
 				if (!($arTPart["AID"] == $arImage["AID"] && !(strpos($arImage["PATH"], "0/0.jpg")))) {
 					continue;
@@ -590,7 +595,10 @@ if (0 < $arResult["ALL_BRANDS_COUNT"]) {
 	}
 }
 
-$arResult = (new PcPartsListProcessor($arResult, $TDMCore))->runPostProcessing()->getList();
+$arResult = (new PcPartsListProcessor($arResult, $TDMCore))
+				->runPostProcessing()
+				->sortList()
+				->getList();
 
 $arResult["ADDED_PHID"] = TDMPerocessAddToCart($arResult["PRICES"], $arResult["PARTS"]);
 
