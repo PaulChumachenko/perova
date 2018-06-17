@@ -176,6 +176,27 @@ class PcPartsListProcessor
 	}
 
 	/**
+	 * @return $this
+	 */
+	public function loadImages()
+	{
+		if(empty($this->list['PARTS'])) return $this;
+
+		foreach($this->list['PARTS'] as $part){
+			// Try to load Part AID from TecDoc
+			// Try pairs: PC_MANUFACTURER-PC_SKU | BRAND-ARTICLE | BKEY-AKEY
+			$tdPart = TDSQL::GetPartByPKEY($part['PC_MANUFACTURER'], $part['PC_SKU']);
+			PcHelper::dump('Result for ' . $part['PC_MANUFACTURER'] . ' ' . $part['PC_SKU']);
+			PcHelper::dump($tdPart,1);
+			if ($aid = $tdPart['AID']){
+
+			}
+		}
+
+		return $this;
+	}
+
+	/**
 	 * @param $part
 	 * @return string
 	 */
@@ -246,14 +267,5 @@ class PcPartsListProcessor
 		$pricesResults->SimpleSelect($this->getBigPricesQuery($parts));
 
 		return $pricesResults->RowsCount;
-	}
-
-	/**
-	 * @param $var
-	 * @param string $prefix
-	 */
-	protected function log($var, $prefix = '')
-	{
-		if(TDM_ISADMIN) echo "{$prefix} :: <pre>" . var_export($var, true) . "</pre>";
 	}
 }

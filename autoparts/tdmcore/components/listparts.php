@@ -96,8 +96,8 @@ if (0 < count($arPARTS_noP)) {
 	$arMinPrices = array();
 	$arMinDays = array();
 
-	// PC: Decorate parts that found
-	// PC: All selected items filter by existed price. If there are not any record in Prices table for part - skip it
+	// PC: Decorate Parts that found
+	// PC: All selected Parts filter by existed price. If there are not any record in Prices table for Part - skip it
 	if (0 < count($arPARTS_noP)) {
 		$rsDBPrices = new TDMQuery();
 		if ($arResult["GROUP_VIEW"] == 2) {
@@ -164,6 +164,7 @@ if (0 < count($arPARTS_noP)) {
 		unset($arNmC);
 		TDMSetTime("SelectPricesQuery(PARTS) ## For all selected " . count($arPARTS_noP) . " items  - returned prices count <b>" . $PrCnt . "</b>");
 	}
+
 	if ($arComSets["HIDE_NOPRICES"] == 1) {
 		$arResult["HIDE_NOPRICES"] = "Y";
 		TDMSetTime("HIDDEN PARTS ## Parts without prices are <b>HIDDEN</b>");
@@ -182,7 +183,7 @@ if (0 < count($arPARTS_noP)) {
 		}
 	}
 
-	// PC: Load extra info about selected parts from TecDoc
+	// PC: Filter by brands (some piece of shit)
 	$TDMCore->DBSelect("TECDOC");
 	TDMSetTime("DBSelect(TECDOC)");
 	foreach ($arPARTS_noP as $PKEY => $arTPart) {
@@ -228,6 +229,8 @@ if (0 < count($arPARTS_noP)) {
 		$arResult["FILTERED_BRANDS_COUNT"] = count($arResult["FILTERED_BRANDS"]);
 		TDMSetTime("FilteringByBrands(PARTS_noP) ## Filtered by Brands items count <b>" . $FilteredBrands . "</b>");
 	}
+
+	// PC: Load extra info about selected parts from TecDoc
 	if (0 < $LinksCnt) {
 		foreach ($arPARTS_noP as $PKey => $arTPart) {
 			if (!(isset($arTPart["LINK_CODE"]))) {
@@ -253,12 +256,17 @@ if (0 < count($arPARTS_noP)) {
 			TDMSetTime("GetPartByPKEY(PARTS) ## Get TecDoc <b>LINKS</b> info for this page items. Try get <b>" . $GetCrNum . "</b>. Returned <b>" . $SetCrNum . "</b>");
 		}
 	}
+
+	// PC: Check whether there are Images for selected Parts
+	// PC: Use next in the sorting mechanism
 	$arPAIDs_noP_cnt = count($arPAIDs_noP);
 	$arPImgAvail = array();
 	if (0 < $arPAIDs_noP_cnt) {
 		$arPImgAvail = TDSQL::ImagesAvialable($arPAIDs_noP);
 		TDMSetTime("ImagesAvialable(arPAIDs_noP) ## All selected " . $arPAIDs_noP_cnt . " items  - returned rows count <b>" . count($arPImgAvail) . "</b>");
 	}
+
+	// PC: Load Properties for each Part from TecDoc
 	if (0 < $arPAIDs_noP_cnt && $arComSets["SHOW_ITEM_PROPS"] == 1 && $arResult["VIEW"] == "LIST") {
 		$rsProps = TDSQL::GetPropertysUnion($arPAIDs_noP);
 		TDMSetTime("GetPropertysUnion(PAIDs) ## For items count - " . $arPAIDs_noP_cnt);
@@ -289,6 +297,8 @@ if (0 < count($arPARTS_noP)) {
 		}
 		TDMSetTime("GetPropertysUnion(PAIDs) ## Processing result");
 	}
+
+	// PC: Sorting Parts
 	$arSortKeys = array();
 	foreach ($arPARTS_noP as $PKEY => $arTPart) {
 		$SortNum = 999999999;
@@ -336,6 +346,9 @@ if (0 < count($arPARTS_noP)) {
 	if (0 < count($arSortKeys) && 0 < count($arPARTS_noP)) {
 		array_multisort($arSortKeys, $arPARTS_noP);
 	}
+
+	// PC: Process pagination
+	// PC: Here $arPARTS_noP become $arPARTS and $arPAIDs_noP - $arPAIDs
 	$arResult["PAGINATION"]["TOTAL_ITEMS"] = count($arPARTS_noP);
 	$OnPage = $arComSets["ITEMS_ON_PAGE_" . $arResult["VIEW"]];
 	$arResult["PAGINATION"]["TOTAL_PAGES"] = ceil($arResult["PAGINATION"]["TOTAL_ITEMS"] / $OnPage);
@@ -379,6 +392,8 @@ if (0 < count($arPARTS_noP)) {
 	$arResult["PAGINATION"]["ITEMS_ON_PAGE"] = $OnPage;
 	$arResult["PAGINATION"]["CURRENT_PAGE"] = $CrPage;
 	TDMSetTime("Sorting & Pagination ## For items count - " . count($arPARTS_noP));
+
+	// PC: Sorting Properties from TecDoc for each part
 	if ($arComSets["SHOW_ITEM_PROPS"] == 1 && $arResult["VIEW"] == "LIST") {
 		$arCrPrior = array(100 => 1, 410 => 2, 497 => 3);
 		foreach ($arPARTS as $PKey => $arTPart) {
@@ -419,6 +434,8 @@ if (0 < count($arPARTS_noP)) {
 		}
 	}
 	$arPAIDs_cnt = count($arPAIDs);
+
+	// PC: Load some shit (criteria) from TecDoc. Don't know what does it mean. I think we don't use it
 	if (0 < $arPAIDs_cnt) {
 		$rsAppCrit = TDSQL::GetAppCriteriaUnion($arPAIDs, $TYP_ID);
 		TDMSetTime("GetAppCriteriaUnion(PAIDs,TYP) ## For items count - " . $arPAIDs_cnt);
@@ -438,14 +455,13 @@ if (0 < count($arPARTS_noP)) {
 		}
 	}
 	$arResult["ART_LOGOS"] = array();
+
+	// PC: Load Images for selected Parts from TecDoc by AID
+	// PC: Maybe AID stands for Art ID
 	if (0 < $arPAIDs_cnt) {
 		$rsImages = TDSQL::GetImagesUnion($arPAIDs);
 		TDMSetTime("GetImagesUnion(PAIDs) ## For items count - " . $arPAIDs_cnt);
 		while ($arImage = $rsImages->Fetch()) {
-
-			//PcHelper::dump("http://" . TECDOC_FILES_PREFIX . $arImage["PATH"]);
-			//PcHelper::dump($arImage);
-			//echo '<img src = "' . "http://" . TECDOC_FILES_PREFIX . $arImage["PATH"] . '"><br/>';
 
 			foreach ($arPARTS as $PKey => $arTPart) {
 				if (!($arTPart["AID"] == $arImage["AID"] && !(strpos($arImage["PATH"], "0/0.jpg")))) {
@@ -460,12 +476,16 @@ if (0 < count($arPARTS_noP)) {
 				$arPARTS[$PKey]["IMG_ADDITIONAL"][] = "http://" . TECDOC_FILES_PREFIX . $arImage["PATH"];
 			}
 		}
+
+		// PC: Load Logos for Brands. Maybe not use.
 		$rsBLogos = TDSQL::GetArtsLogoUnion($arPAIDs);
 		TDMSetTime("GetArtsLogoUnion(PAIDs) ## For items count - " . $arPAIDs_cnt);
 		while ($arBLogos = $rsBLogos->Fetch()) {
 			$arResult["ART_LOGOS"][$arBLogos["AID"]] = "http://" . TECDOC_FILES_PREFIX . $arBLogos["PATH"];
 		}
 	}
+
+	// PC: Try to load extra data from external APIs. We don't use them
 	$TDMCore->DBSelect("MODULE");
 	$WS = new TDMWebservers();
 	if (isset($arWSP) && is_array($arWSP) && 0 < count($arWSP)) {
@@ -519,6 +539,8 @@ if (0 < count($arPARTS_noP)) {
 			TDMSetTime("Webserices ## On-line prices count returned <b>" . $OnPrCnt . "</b> for this page");
 		}
 	}
+
+	// PC: Sorting selected Parts once more
 	$arSortKeys = array();
 	foreach ($arPARTS as $PKEY => $arTPart) {
 		$SortNum = 999999999;
@@ -573,8 +595,11 @@ if (0 < count($arPARTS_noP)) {
 		array_multisort($arSortKeys, $arPARTS);
 	}
 }
+
 $arResult["PARTS"] = array();
 $arResult["PARTS"] = $arPARTS;
+
+// PC: Sort items from ALL_BRANDS
 if (0 < $arResult["ALL_BRANDS_COUNT"]) {
 	$arABSortKeys = array();
 	foreach ($arResult["ALL_BRANDS"] as $BKEY => $BRAND) {
@@ -595,10 +620,13 @@ if (0 < $arResult["ALL_BRANDS_COUNT"]) {
 	}
 }
 
+// PC: We have a result for display now
 $arResult = (new PcPartsListProcessor($arResult, $TDMCore))
 				->runPostProcessing()
 				->sortList()
 				->getList();
+
+//PcHelper::dump($arResult['PARTS'],1);
 
 $arResult["ADDED_PHID"] = TDMPerocessAddToCart($arResult["PRICES"], $arResult["PARTS"]);
 
