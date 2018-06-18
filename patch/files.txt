@@ -1,0 +1,74 @@
+Patch #1
+\autoparts\admin\import\run.php
+\autoparts\tdmcore\CrossGenerator.php
+\autoparts\tdmcore\classes.php
+\autoparts\tdmcore\functions.php
+\autoparts\tdmcore\components\listparts.php
+\autoparts\templates\partslist\ss\view_list.php
+\autoparts\templates\partslist\ss\style.css
+\autoparts\templates\partslist\default\view_list.php
+\admin\view\template\csvprice_pro\app_product.tpl
+\system\modification\admin\model\catalog\product.php
+\admin\controller\catalog\product.php
+\catalog\view\theme\coloring\template\common\header.tpl
+
+Patch #2
+autoparts/admin/import/run.php
+autoparts/tdmcore/CrossGenerator.php
+autoparts/tdmcore/PartsListProcessor.php
+autoparts/tdmcore/classes.php
+autoparts/tdmcore/functions.php
+autoparts/tdmcore/components/listparts.php
+autoparts/tdmcore/components/searchparts/component.php
+autoparts/templates/partslist/default/view_list.php
+autoparts/templates/partslist/ss/view_list.php
+
+Patch #3
+autoparts/tdmcore/PartsListProcessor.php
+autoparts/tdmcore/components/listparts.php
+autoparts/tdmcore/components/searchparts/component.php
+autoparts/templates/partslist/default/view_list.php
+autoparts/templates/partslist/ss/view_list.php
+
+Patch #4
++ autoparts/admin/import/run.php
++ autoparts/tdmcore/classes.php
++ autoparts/tdmcore/PcCrossGenerator.php
++ autoparts/tdmcore/PcPartsListProcessor.php
++ autoparts/tdmcore/PcAlternativeArticles.php
++ autoparts/tdmcore/components/listparts.php
++ autoparts/tdmcore/components/searchparts/component.php
+- autoparts/tdmcore/CrossGenerator.php
+- autoparts/tdmcore/PartsListProcessor.php
+
+Patch #5
++ autoparts/tdmcore/classes.php
++ autoparts/tdmcore/defines.php
++ autoparts/tdmcore/PcImapMailbox.php
++ autoparts/tdmcore/PcMailImporter.php
++ autoparts/tdmcore/PcMailImporterCrontab.php
++ autoparts/tdmcore/PcCliHelper.php
++ cli/pc_import.php
++ cli/csvprice_pro_cli.php
+
+Patch #6
+autoparts\tocms\OpenCart.php
+
+Patch #7
++ autoparts/admin/import/run.php
++ autoparts/tdmcore/classes.php
++ autoparts/tdmcore/PcMailImporter.php
++ autoparts/tdmcore/PcHelper.php
+- autoparts/tdmcore/PcCliHelper.php
+
+Patch #8
++ admin/view/template/csvprice_pro/app_product.tpl
++ cli/2000/cli_framework.php
+
+Patch #9
+autoparts/tdmcore/PcPartsListProcessor.php
+autoparts/templates/partslist/ss/view_list.php
+
+Patch #10
+cli/pc_import.php
+autoparts/tdmcore/PcMailImporter.php
